@@ -61,7 +61,7 @@ vga_adapter #( .RESOLUTION("160x120"))
 
 wire initx, inity, loadx, loady, xdone, ydone; 
 
-datapath dp(.clock(CLOCK_50), 
+datapath_clear dp1(.clock(CLOCK_50), 
 			.resetb(KEY[3]), 
 			.initx(initx), 
 			.inity(inity), 
@@ -71,7 +71,7 @@ datapath dp(.clock(CLOCK_50),
 			.ydone(ydone), 
 			.x(x), 
 			.y(y), 
-			.colour(colour);
+			.colour(colour));
 
 
 state_machine sm(.clock(CLOCK_50), 

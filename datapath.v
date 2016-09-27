@@ -1,4 +1,4 @@
-module datapath(clock, resetb, initx, inity, loadx, loady,  xdone, ydone, x, y, colour);
+module datapath_clear(clock, resetb, initx, inity, loadx, loady,  xdone, ydone, x, y, colour);
 
 	input clock, initx, inity, loadx, loady, resetb;
 	output xdone, ydone;
@@ -20,7 +20,7 @@ module datapath(clock, resetb, initx, inity, loadx, loady,  xdone, ydone, x, y, 
 	assign xplus1 = x + 1;
 	assign yplus1 = y + 1;
 	
-	assign colour = BLACK;
+	assign colour = `BLACK;
 	//assign colour = x % 8, this is the code for task 2
 	
 	always_ff @(posedge clock, negedge resetb) begin
