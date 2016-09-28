@@ -1,17 +1,20 @@
 module statemachine(clock, resetb, xdone, ydone, 
-					crit_condition, offset_condition,
-					plot, loadx, loady, initx, inity,
-				    init_crit, init_offsetx, init_offsety, sel,
-					load_crit, load_offsety, load_offsetx, pixel);
+					crit_condition, offset_condition, 
+					circle_num, plot, loadx, loady, 
+					initx, inity, init_circle, init_vars, 
+					sel, load_crit, load_circle, load_offsety, 
+					load_offsetx, pixel);
 
 
 	input clock, xdone, ydone, resetb;
 	input crit_condition, offset_condition;
 	
-	output reg plot, loadx, loady, initx, inity, sel;
+	input [2:0] circle_num;
 	
-	output reg init_crit, init_offsetx, init_offsety, 
-			   load_crit, load_offsetx, load_offsety;
+	output reg plot, sel; 
+	output reg loadx, loady, initx, inity;
+	
+	output reg init_circle, init_vars, load_circle, load_crit, load_offsetx, load_offsety;
 			   
 	output reg [3:0] pixel;
 	
@@ -30,10 +33,13 @@ module statemachine(clock, resetb, xdone, ydone,
 	`define S_drawP7 4'b1001
 	`define S_drawP8 4'b1010
 	`define S_update 4'b1011
-	`define S_check  4'b1100
+	`define S_check1 4'b1100
+	`define S_next   4'b1101
+	`define S_check2 4'b1110
 	`define S_finish 4'b1111
+	
 	`define OutputsDP1 {loadx, loady, initx, inity}
-	`define OutputsDP2 {init_crit, init_offsetx, init_offsety, load_crit, load_offsetx, load_offsety, pixel}
+	`define OutputsDP2 {init_circle, init_vars, load_circle, load_crit, load_offsetx, load_offsety, pixel}
 	`define Absent 0
 	
 	
@@ -44,7 +50,7 @@ module statemachine(clock, resetb, xdone, ydone,
 			`S_start: begin
 					  plot = 0;
 					 `OutputsDP1 = 4'b1111;
-					 `OutputsDP2 = `Absent;
+					 `OutputsDP2 = {6'b101000, 4'b0000};
 					  sel = 0;
 					  next_state = `S_clear;
 					 end
@@ -79,7 +85,7 @@ module statemachine(clock, resetb, xdone, ydone,
 			`S_init: begin
 					 plot = 0;
 					`OutputsDP1 = `Absent;
-				    `OutputsDP2 = {6'b111111, 4'b0000};
+				    `OutputsDP2 = {6'b010111, 4'b0000};
 					 sel = 1;
 					 next_state = `S_drawP1;
 					 end
@@ -156,10 +162,10 @@ module statemachine(clock, resetb, xdone, ydone,
 					else
 						`OutputsDP2 = {6'b000111, 4'b0000};
 					sel = 1;
-					next_state = `S_check;
+					next_state = `S_check1;
 					end
 			
-			`S_check: begin
+			`S_check1: begin
 					plot = 0;
 					`OutputsDP1 = `Absent;
 					`OutputsDP2 = `Absent;
@@ -167,6 +173,25 @@ module statemachine(clock, resetb, xdone, ydone,
 					if(offset_condition == 1)
 						next_state = `S_drawP1;
 					else
+						next_state = `S_next;
+					end
+					
+			`S_next: begin
+					 plot = 0;
+					`OutputsDP1 = `Absent;
+					`OutputsDP2 = {6'b001000, 4'b0000};
+					 sel = 1;
+					 next_state = `S_check2;
+					 end
+					 
+			`S_check2: begin
+					 plot = 0;
+					`OutputsDP1 = `Absent;
+					`OutputsDP2 = {6'b000000, 4'b0000};
+					 sel = 1;
+					 if(circle_num >=1 && circle_num <= 5)
+						next_state = `S_init;
+					 else 
 						next_state = `S_finish;
 					end
 					 
@@ -183,7 +208,7 @@ module statemachine(clock, resetb, xdone, ydone,
 					 `OutputsDP1 = `Absent;
 					 `OutputsDP2 = `Absent;
 					 sel = 0;
-					 next_state = `S_start;
+					 next_state = `S_finish;
 					 end
 		endcase
 	end

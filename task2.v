@@ -60,12 +60,14 @@ vga_adapter #( .RESOLUTION("160x120"))
 // Your code to fill the screen goes here. 
 
 wire initx, inity, loadx, loady, xdone, ydone; 
-wire init_crit, init_offsetx, init_offsety, load_crit, load_offsety, load_offsetx, crit_condition, offset_condition;
+wire init_circle, init_vars, load_circle, load_crit, load_offsety, load_offsetx, crit_condition, offset_condition;
 
 wire [7:0] x1, x2;
 wire [6:0] y1, y2;
 wire [2:0] colour1, colour2;
 wire [3:0] pixel;
+
+wire[2:0] circle_num;
 
 
 
@@ -84,12 +86,12 @@ datapath_clear dp1(.clock(CLOCK_50),
 datapath_circle dp2(.clock(CLOCK_50),
 					.resetb(KEY[3]),
 					.pixel(pixel),
-					.init_crit(init_crit), 
-					.init_offsety(init_offsety), 
-					.init_offsetx(init_offsetx), 
+					.init_vars(init_vars),
+					.init_circle(init_circle), 
 					.load_crit(load_crit), 
 					.load_offsety(load_offsety), 
 					.load_offsetx(load_offsetx), 
+					.circle_num(circle_num),
 					.x(x2), 
 					.y(y2), 
 					.crit_condition(crit_condition), 
@@ -108,14 +110,14 @@ state_machine sm(.clock(CLOCK_50),
 				 .ydone(ydone),
 				 .crit_condition(crit_condition), 
 				 .offset_condition(offset_condition),
+				 .circle_num(circle_num),
 				 .plot(plot), 
 				 .loadx(loadx), 
 				 .loady(loady), 
 				 .initx(initx), 
 				 .inity(inity),
-				 .init_crit(init_crit), 
-				 .init_offsetx(init_offsetx), 
-				 .init_offsety(init_offsety), 
+				 .init_circle(init_circle),
+				 .init_vars(init_vars),
 				 .sel(sel),
 				 .load_crit(load_crit), 
 				 .load_offsety(load_offsety), 
