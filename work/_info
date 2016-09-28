@@ -33,15 +33,15 @@ Z8 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/altera/15.0/CPEN311/la
 Z9 o-work work -sv
 vdatapath_circle
 R0
-Z10 !s110 1475003943
+Z10 !s110 1475031126
 !i10b 1
-!s100 ll7l?^]M?h=SLPZa39g@V0
-I^M1onN[60[Tk6N;]`Z`HK0
+!s100 [RoO5]zogf@^bj7dLh0l:3
+IJCJ_5mJA:]VjR=T`W6nC`0
 R1
 !s105 datapath_circle_v_unit
 S1
 R3
-w1475003651
+w1475029550
 8C:/altera/15.0/CPEN311/lab2/datapath_circle.v
 FC:/altera/15.0/CPEN311/lab2/datapath_circle.v
 L0 1
@@ -49,7 +49,7 @@ R6
 r1
 !s85 0
 31
-!s108 1475003943.529000
+!s108 1475031126.959000
 !s107 C:/altera/15.0/CPEN311/lab2/datapath_circle.v|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/altera/15.0/CPEN311/lab2/datapath_circle.v|
 !i113 1
@@ -72,22 +72,42 @@ R6
 r1
 !s85 0
 31
-!s108 1475003943.412000
+!s108 1475031126.852000
 R7
 R8
 !i113 1
 R9
+vmux
+R10
+!i10b 1
+!s100 G=bjnR;Tz>@7Zg;ViUm^20
+I8ohz7R6GOJU;>:^ZIRWAo0
+R1
+R3
+Z11 w1475030898
+Z12 8C:/altera/15.0/CPEN311/lab2/task2.v
+Z13 FC:/altera/15.0/CPEN311/lab2/task2.v
+L0 128
+R6
+r1
+!s85 0
+31
+Z14 !s108 1475031126.148000
+Z15 !s107 C:/altera/15.0/CPEN311/lab2/task2.v|
+Z16 !s90 -reportprogress|300|-work|work|-stats=none|C:/altera/15.0/CPEN311/lab2/task2.v|
+!i113 1
+Z17 o-work work
 vstatemachine
 R0
 R10
 !i10b 1
-!s100 fzTh_GLgJ<FLk[D2H@f@43
-ITP`mZoS6]j[]8VJEaA^8z0
+!s100 bRl:0=ek5`Mcd7c=QLkQC2
+I>@l9aZH^gjfJ:^g7O6UQP0
 R1
 !s105 state_machine_v_unit
 S1
 R3
-w1475003935
+w1475031111
 8C:/altera/15.0/CPEN311/lab2/state_machine.v
 FC:/altera/15.0/CPEN311/lab2/state_machine.v
 L0 1
@@ -95,39 +115,39 @@ R6
 r1
 !s85 0
 31
-!s108 1475003943.280000
+!s108 1475031126.733000
 !s107 C:/altera/15.0/CPEN311/lab2/state_machine.v|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/altera/15.0/CPEN311/lab2/state_machine.v|
 !i113 1
 R9
 vtask2
-Z11 !s110 1475003942
+R10
 !i10b 1
-!s100 zLVlATRjDAEP1j1lDRnV;3
-IDMX2Ei?N5Sh>]h[OXZf2N3
+!s100 `8emTkPAUV5=P6=Bd>mCS3
+I]@1aQ9eB`zQOBAoKVA<G<3
 R1
 R3
-w1475002226
-8C:/altera/15.0/CPEN311/lab2/task2.v
-FC:/altera/15.0/CPEN311/lab2/task2.v
+R11
+R12
+R13
 L0 3
 R6
 r1
 !s85 0
 31
-!s108 1475003942.695000
-!s107 C:/altera/15.0/CPEN311/lab2/task2.v|
-!s90 -reportprogress|300|-work|work|-stats=none|C:/altera/15.0/CPEN311/lab2/task2.v|
+R14
+R15
+R16
 !i113 1
-Z12 o-work work
+R17
 vvga_adapter
-R11
+R10
 !i10b 1
 !s100 ^k>mh9R69ZY:SOiVVRE?42
 I@;8O;0[O8mE9k6Z5@gF[l1
 R1
 R3
-Z13 w1474941588
+Z18 w1474941588
 8C:/altera/15.0/CPEN311/lab2/vga_adapter.v
 FC:/altera/15.0/CPEN311/lab2/vga_adapter.v
 L0 78
@@ -135,19 +155,19 @@ R6
 r1
 !s85 0
 31
-!s108 1475003942.786000
+!s108 1475031126.226000
 !s107 C:/altera/15.0/CPEN311/lab2/vga_adapter.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/altera/15.0/CPEN311/lab2/vga_adapter.v|
 !i113 1
-R12
+R17
 vvga_address_translator
-R11
+R10
 !i10b 1
 !s100 Z`O4OYla;7H?DcIdfCeSj2
 IbOAla^WJ`k8a=Uk65bD2Y0
 R1
 R3
-R13
+R18
 8C:/altera/15.0/CPEN311/lab2/vga_address_translator.v
 FC:/altera/15.0/CPEN311/lab2/vga_address_translator.v
 L0 4
@@ -155,11 +175,11 @@ R6
 r1
 !s85 0
 31
-!s108 1475003942.914000
+!s108 1475031126.383000
 !s107 C:/altera/15.0/CPEN311/lab2/vga_address_translator.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/altera/15.0/CPEN311/lab2/vga_address_translator.v|
 !i113 1
-R12
+R17
 vvga_controller
 R10
 !i10b 1
@@ -167,7 +187,7 @@ R10
 IHbR0]6JkDD[RnF?jnYkGj0
 R1
 R3
-R13
+R18
 8C:/altera/15.0/CPEN311/lab2/vga_controller.v
 FC:/altera/15.0/CPEN311/lab2/vga_controller.v
 L0 9
@@ -175,11 +195,11 @@ R6
 r1
 !s85 0
 31
-!s108 1475003943.032000
+!s108 1475031126.497000
 !s107 C:/altera/15.0/CPEN311/lab2/vga_controller.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/altera/15.0/CPEN311/lab2/vga_controller.v|
 !i113 1
-R12
+R17
 vvga_pll
 R10
 !i10b 1
@@ -187,7 +207,7 @@ R10
 I32?:HKPhRLk8Q_`A:mESY1
 R1
 R3
-R13
+R18
 8C:/altera/15.0/CPEN311/lab2/vga_pll.v
 FC:/altera/15.0/CPEN311/lab2/vga_pll.v
 L0 36
@@ -195,8 +215,8 @@ R6
 r1
 !s85 0
 31
-!s108 1475003943.139000
+!s108 1475031126.612000
 !s107 C:/altera/15.0/CPEN311/lab2/vga_pll.v|
 !s90 -reportprogress|300|-work|work|-stats=none|C:/altera/15.0/CPEN311/lab2/vga_pll.v|
 !i113 1
-R12
+R17

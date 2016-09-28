@@ -60,30 +60,79 @@ vga_adapter #( .RESOLUTION("160x120"))
 // Your code to fill the screen goes here. 
 
 wire initx, inity, loadx, loady, xdone, ydone; 
+wire init_crit, init_offsetx, init_offsety, load_crit, load_offsety, load_offsetx, crit_condition, offset_condition;
+
+wire [7:0] x1, x2;
+wire [6:0] y1, y2;
+wire [2:0] colour1, colour2;
+wire [3:0] pixel;
+
+
 
 datapath_clear dp1(.clock(CLOCK_50), 
-			.resetb(KEY[3]), 
-			.initx(initx), 
-			.inity(inity), 
-			.loadx(loadx), 
-			.loady(loady), 
-			.xdone(xdone), 
-			.ydone(ydone), 
-			.x(x), 
-			.y(y), 
-			.colour(colour));
+				   .resetb(KEY[3]), 
+				   .initx(initx), 
+				   .inity(inity), 
+				   .loadx(loadx), 
+				   .loady(loady), 
+				   .xdone(xdone), 
+				   .ydone(ydone), 
+				   .x(x1), 
+				   .y(y1), 
+				   .colour(colour1));
+			
+datapath_circle dp2(.clock(CLOCK_50),
+					.resetb(KEY[3]),
+					.pixel(pixel),
+					.init_crit(init_crit), 
+					.init_offsety(init_offsety), 
+					.init_offsetx(init_offsetx), 
+					.load_crit(load_crit), 
+					.load_offsety(load_offsety), 
+					.load_offsetx(load_offsetx), 
+					.x(x2), 
+					.y(y2), 
+					.crit_condition(crit_condition), 
+					.offset_condition(offset_condition), 
+					.colour(colour2));
+					
+
+mux #(8) mux_x(.in1(x1), .in2(x2), .sel(sel), .out(x));	
+mux #(7) mux_y(.in1(y1), .in2(y2), .sel(sel), .out(y));	
+mux #(3) mux_colour(.in1(colour1), .in2(colour2), .sel(sel), .out(colour));	
 
 
 state_machine sm(.clock(CLOCK_50), 
 				 .resetb(KEY[3]), 
 				 .xdone(xdone), 
-				 .ydone(ydone), 
+				 .ydone(ydone),
+				 .crit_condition(crit_condition), 
+				 .offset_condition(offset_condition),
 				 .plot(plot), 
 				 .loadx(loadx), 
 				 .loady(loady), 
 				 .initx(initx), 
-				 .inity(inity));
+				 .inity(inity),
+				 .init_crit(init_crit), 
+				 .init_offsetx(init_offsetx), 
+				 .init_offsety(init_offsety), 
+				 .sel(sel),
+				 .load_crit(load_crit), 
+				 .load_offsety(load_offsety), 
+				 .load_offsetx(load_offsetx), 
+				 .pixel(pixel));
 
+endmodule
+
+
+module mux (in1, in2, sel, out);
+	parameter k = 8;
+	input [k-1:0] in1, in2;
+	input sel;
+	output [k-1:0] out;
+	
+	assign out = (sel == 1) ? in2 : in1;
+	
 endmodule
 
 

@@ -1,27 +1,40 @@
 module datapath_circle(clock, resetb, pixel, init_crit, init_offsety, 
-					   init_offsetx, load_crit, load_offsety, 
-					   load_offsetx, center_x, center_y, radius, 
-					   x, y, crit_condition, offset_condition);
-					   
-			
+					   init_offsetx, load_crit, load_offsety, load_offsetx, 
+					   x, y, crit_condition, offset_condition, colour);
+					   		
+	
+	`define BLACK 3'b000
+	`define BLUE 3'b001
+	`define RED 3'b100
+	`define GREEN 3'b010
+	`define WHITE 3'b111
+	`define YELLOW 3'b110
+	
+	
 	input clock, resetb;
 
 	input init_crit, init_offsety, init_offsetx, 
 		  load_crit, load_offsety, load_offsetx;
-		  
-	input [7:0] center_x, center_y, radius;
+	
 	input [3:0] pixel;
 	
 	output crit_condition, offset_condition;
 	output reg [7:0] x;
 	output reg [6:0] y;
+	output wire [2:0] colour;
 	
 	reg signed[8:0] crit, next_crit;
 	reg [7:0] offsetx, offsety;
 	wire [7:0] next_offsetx, next_offsety;
+	wire [7:0] center_x, center_y, radius;
+	
+	assign center_x = 80;
+	assign center_y = 60;
+	assign radius = 40;
+	assign colour = `BLUE;
 	
 	assign crit_condition = (crit <= 0) ? 1 : 0;
-	assign offset_condition = (offsety <= offsetx);
+	assign offset_condition = (offsety <= offsetx) ? 1 : 0;
 	
 	assign next_offsetx = (init_offsetx == 1) ? radius : offsetx - 1;
 	assign next_offsety = (init_offsety == 1) ? 0 : offsety + 1;
