@@ -1,4 +1,4 @@
-module statemachine(clock, resetb, xdone, ydone, 
+module state_machine(clock, resetb, xdone, ydone, 
 					crit_condition, offset_condition,
 					plot, loadx, loady, initx, inity,
 				    init_crit, init_offsetx, init_offsety, sel,
