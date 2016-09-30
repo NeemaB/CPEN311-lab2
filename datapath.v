@@ -20,8 +20,8 @@ module datapath_clear(clock, resetb, initx, inity, loadx, loady,  xdone, ydone, 
 	assign xplus1 = x + 1;
 	assign yplus1 = y + 1;
 	
-	assign colour = `BLACK;
-	//assign colour = x % 8, this is the code for task 2
+	//assign colour = `BLACK;
+	assign colour = x % 8;
 	
 	always_ff @(posedge clock, negedge resetb) begin
 		
